@@ -46,13 +46,9 @@ const Game = () => {
         <Fragment>
           <Score value={score}/>
           <Timer time={TIME_LIMIT} onEnd={() => setPlaying(false)}/>
-          <Moles>
-            <Mole onWhack={onWhack}/>
-            <Mole onWhack={onWhack}/>
-            <Mole onWhack={onWhack}/>
-            <Mole onWhack={onWhack}/>
-            <Mole onWhack={onWhack}/>
-          </Moles>
+          {new Array(5).fill().map((_, id) =>
+            <Mole key={id} onWhack={onWhack}/>
+          )}
         </Fragment>
       )}
     </Fragment>
