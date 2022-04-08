@@ -5,7 +5,6 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 const Moles = ({ children }) => <div>{children}</div>
-const Mole = () => <button>Mole</button>
 
 const TIME_LIMIT = 30000
 
@@ -24,12 +23,19 @@ const Timer = ({ time, interval = 1000, onEnd }) => {
   }, [interval])
   return <div>{`Time: ${internalTime / 1000}s`}</div>
 }
-const Score = () => <div>Score: 0</div>
+const MOLE_SCORE = 100
 
+const Mole = ({ onWhack }) => (
+  <button onClick={() => onWhack(MOLE_SCORE)}>Mole</button>
+)
+
+const Score = ({ value }) => <div>{`Score: ${value}`}</div>
 
 
 const Game = () => {
   const [playing, setPlaying] = useState(false)
+  const [score, setScore] = useState(0)
+  const onWhack = points => setScore(score + points)
   return (
     <Fragment>
       {!playing && <h1>Whac-A-Mole</h1>}
@@ -38,14 +44,14 @@ const Game = () => {
       </button>
       {playing && (
         <Fragment>
-          <Score />
+          <Score value={score}/>
           <Timer time={TIME_LIMIT} onEnd={() => setPlaying(false)}/>
           <Moles>
-            <Mole />
-            <Mole />
-            <Mole />
-            <Mole />
-            <Mole />
+            <Mole onWhack={onWhack}/>
+            <Mole onWhack={onWhack}/>
+            <Mole onWhack={onWhack}/>
+            <Mole onWhack={onWhack}/>
+            <Mole onWhack={onWhack}/>
           </Moles>
         </Fragment>
       )}
