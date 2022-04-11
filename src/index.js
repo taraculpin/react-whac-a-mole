@@ -86,11 +86,10 @@ const Mole = ({ onWhack, points, delay, speed, pointsMin = 10 }) => {
   return (
     <div className="mole-hole">
       <button
-        className="mole"
+        className="mole-button"
         ref={buttonRef}
         onClick={whack}
       >
-        Mole
       </button>
     </div>
   )
@@ -120,7 +119,7 @@ const Game = () => {
       {!playing && !finished &&
       <Fragment>
         <h1>Whac-A-Mole</h1>
-        <button onClick={startGame}>
+        <button className="control-button" onClick={startGame}>
           Start Game
         </button>
       </Fragment>
@@ -145,7 +144,7 @@ const Game = () => {
       {finished &&
         <Fragment>
           <Score value={score} />
-          <button onClick={startGame}>Play Again</button>
+          <button onClick={startGame} className="control-button">Play Again</button>
         </Fragment>
       }
     </Fragment>
